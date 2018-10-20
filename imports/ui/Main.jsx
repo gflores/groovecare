@@ -8,15 +8,42 @@ import { DayResults } from '/imports/models/day-results';
 import { Notifications } from '/imports/models/notifications';
 import { Invoices } from '/imports/models/invoices';
 
+import { Login } from './login/Login.jsx';
+import { Admin } from './admin/Admin.jsx';
+import { Home } from './home/Home.jsx';
+
 require("./main.scss");
 
 class _Main extends Component {
+    componentWillMount() {
+        this.goToHome();
+    }
+
+    goToHome() {
+        this.setState({subPage: "home"});
+    }
+
+    goToAdmin() {
+        this.setState({subPage: "admin"});
+    }
+
     render() {
         console.log("ma props: ", this.props)
 
         return (
             <div className="main">
-                <div className="brand-name"> GrooveCare</div>
+                <header>
+                    <div className="logo"> GrooveCare </div>
+                </header>
+                <content>
+                    { this.state.subPage == "admin" ?
+                        <Admin goToHome={ this.goToHome.bind(this) }/>
+                    :(this.props.user == null ?
+                        <Login goToAdmin={ this.goToAdmin.bind(this) }/>
+                    :
+                        <Home />
+                    )}
+                </content>
             </div>
         );
     }

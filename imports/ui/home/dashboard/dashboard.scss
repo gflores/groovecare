@@ -1,0 +1,24 @@
+.dashboard {
+    position: relative;
+
+    .account-button {
+        position: absolute;
+        right: -20px;
+        top: -85px;
+
+        .icon {
+            font-size: 10px;
+            width: 3em;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+            &:active {
+                transform: scale(1.5);
+            }
+        }
+    }
+}

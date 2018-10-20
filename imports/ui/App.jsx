@@ -4,6 +4,8 @@ import { composeWithTracker } from 'react-komposer';
 
 import { Main } from './Main.jsx';
 
+import '../client/startup.js';
+
 var app = null;
 
 export const getApp = () => {
