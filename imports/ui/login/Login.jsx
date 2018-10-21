@@ -10,7 +10,6 @@ export class Login extends Component {
 
     render() {
         return <div className="login">
-            <div className="brand-name"> GrooveCare</div>
             <AccountsUIWrapper />
         </div>;
     }

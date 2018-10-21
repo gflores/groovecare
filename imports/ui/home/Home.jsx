@@ -20,7 +20,6 @@ export class Home extends Component {
 
     render() {
         return <div className="home">
-            Home !
             { this.state.subPage == "dashboard" ?
                 <Dashboard goToAccount={ this.goToAccount.bind(this) } />
             :

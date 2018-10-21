@@ -3,8 +3,8 @@
 
     .account-button {
         position: absolute;
-        right: -20px;
-        top: -85px;
+        right: -4px;
+        top: -66px;
 
         .icon {
             font-size: 10px;
@@ -20,5 +20,95 @@
                 transform: scale(1.5);
             }
         }
+    }
+
+    .today-date {
+        position: absolute;
+        font-size: 36px;
+        color: #595959;
+        width: 100%;
+        text-align: center;
+        top: 8px;
+        font-weight: 100;
+    }
+
+    .day-stats {
+        .stats {
+            display: flex;
+            .label {
+                color: #e7e7e7;
+                background-color: #262626;
+                height: 26px;
+                width: 26px;
+                line-height: 38px;
+                padding: 8px;
+            }
+            .value {
+                border-bottom: #262626 1px solid;
+                border-right: #262626 1px solid;
+                width: 42px;
+                line-height: 41px;
+                text-align: center;
+                font-weight: 700;
+                font-size: 20px;
+                color: hsla(0, 0%, 20%, 1);
+            }
+        }
+    }
+
+    .fit-rank {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .label {
+            color: #e7e7e7;
+            background-color: #262626;
+            font-size: 18px;
+            padding: 4px 8px;
+        }
+
+        .description {
+            .number {
+                color: hsla(120, 100%, 25%, 0.8);
+                font-weight: bold;
+            }
+            .text {
+                color: hsla(0, 0%, 35%, 1);
+            }
+        }
+    }
+
+    .main-score-display {
+        position: absolute;
+        display: flex;
+        top: 100px;
+        width: 100%;
+        justify-content: center;
+
+        .center-part {
+            position: relative;
+
+            .groove-points {
+                border: #cc3100 16px solid;
+                border-radius: 100%;
+                width: 170px;
+                height: 170px;
+                text-align: center;
+
+                .value {
+                    font-size: 68px;
+                    font-family: lemon;
+                    font-weight: 100;
+                    margin-top: 20px;
+                }
+
+                .label {
+                    font-size: 20px;
+                    color: hsla(0, 0%, 25%, 1);
+                }
+            }
+        }
+
     }
 }

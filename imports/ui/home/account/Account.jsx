@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import { AccountsUIWrapper } from '../../login/AccountsUIWrapper';
+
 require("./account.scss");
 
 
@@ -16,6 +18,9 @@ export class Account extends Component {
                 </svg>
 
             </div>
+
+            <AccountsUIWrapper />
+
         </div>;
     }
 }
