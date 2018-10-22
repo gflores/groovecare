@@ -29,7 +29,8 @@ Accounts.onCreateUser((options, user) => {
         userId: user._id,
         createdAt: new Date(),
         groovePoints: 0,
-        fitRank: 50
+        fitRank: 50,
+        paid: false
     });
 
     return user;

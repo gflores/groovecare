@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { DayResults } from '/imports/models/day-results';
 import { Notifications } from '/imports/models/notifications';
+import { Invoices } from '/imports/models/invoices';
+
+let MAX_POINTS = 200;
 
 function createHealthNotification(username, type, numberValue, scoreAdded) {
     if (isNaN(numberValue) == true || numberValue <= 0) {
@@ -15,11 +18,9 @@ function createHealthNotification(username, type, numberValue, scoreAdded) {
     }
 
     let dayResult = DayResults.findOne({userId: user._id}, {sort: {createdAt: -1}});
+    let resultingPoints = Math.min(dayResult.groovePoints + scoreAdded, MAX_POINTS);
 
-    console.log("dayResult: ", dayResult);
-    console.log("added: ", dayResult.groovePoints + scoreAdded);
-
-    DayResults.update({ _id: dayResult._id }, {$set: {groovePoints: dayResult.groovePoints + scoreAdded}});
+    DayResults.update({ _id: dayResult._id }, {$set: {groovePoints: resultingPoints}});
 
     Notifications.insert({
         userId: user._id,
@@ -78,7 +79,40 @@ Meteor.methods({
             userId: user._id,
             createdAt: new Date(),
             groovePoints: 0,
-            fitRank: newRank
+            fitRank: newRank,
+            paid: false
+        });
+    },
+
+    "trigger-next-month": (username) => {
+        let user = Meteor.users.findOne({username: username});
+
+        let dayResults = DayResults.find({userId: user._id, paid: false}, {sort: {createdAt: -1}}).fetch();
+
+        if (dayResults.length == 0) {
+            return ;
+        }
+
+        let DAILY_PRICE = 12, REDUCTION_PER_POINT = 0.02;
+        let numberOfDays = dayResults.length;
+        let accumulatedGroovePoints = 0
+
+        dayResults.forEach((dayResult) => {
+            accumulatedGroovePoints += dayResult.groovePoints;
+        });
+
+        let amountToPay = Math.round((DAILY_PRICE * numberOfDays) - (accumulatedGroovePoints * REDUCTION_PER_POINT * (1 + dayResults[0].fitRank / 100)));
+
+        DayResults.update(
+            {userId: user._id, paid: false},
+            {$set: {paid: true}},
+            {multi: true}
+        );
+
+        Invoices.insert({
+            userId: user._id,
+            createdAt: new Date(),
+            amountToPay: amountToPay
         });
     }
 })

@@ -9,6 +9,17 @@ require("./dashboard.scss");
 
 export class Dashboard extends Component {
 
+    getTotalTypeAmount(type) {
+        let total = 0;
+
+        this.props.notifications.forEach((notification) => {
+            if (notification.type == type) {
+                total += notification.amount;
+            }
+        });
+
+        return total;
+    }
     renderDayStats() {
         return <div className="day-stats">
             <div className="stats">
@@ -17,7 +28,7 @@ export class Dashboard extends Component {
                         <path fill="currentColor" d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"></path>
                     </svg>
                 </div>
-                <div className="value">5h</div>
+                <div className="value"> { this.getTotalTypeAmount("sleep-score") }h</div>
             </div>
             <div className="stats">
                 <div className="label">
@@ -26,7 +37,7 @@ export class Dashboard extends Component {
                         </path>
                     </svg>
                 </div>
-                <div className="value">37m</div>
+                <div className="value">{ this.getTotalTypeAmount("jogging-score") }m</div>
             </div>
             <div className="stats">
                 <div className="label">
@@ -35,16 +46,23 @@ export class Dashboard extends Component {
                         </path>
                     </svg>
                 </div>
-                <div className="value">5m</div>
+                <div className="value">{ this.getTotalTypeAmount("intensive-score") }m</div>
             </div>
         </div>
     }
 
+    getFitRank() {
+        return get(this.props, "dayResults[0].fitRank", 0);
+    }
+    getSavingsAmount() {
+        return Math.round(6.5 * 365 * this.getFitRank() / 100);
+    }
+
     renderFitRank() {
         return <div className="fit-rank">
-            <div className="label"> Fit Rank: { get(this.props, "dayResults[0].fitRank", 0) }/100</div>
+            <div className="label"> Fit Rank: { this.getFitRank() }/100</div>
             <div className="description">
-                <span className="number"> +$974 </span>
+                <span className="number"> +${ this.getSavingsAmount() } </span>
                 <span className="text"> saved yearly </span>
             </div>
         </div>

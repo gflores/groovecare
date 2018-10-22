@@ -48,6 +48,12 @@ export class Admin extends Component {
         Meteor.call('trigger-next-day', username);
     }
 
+    handleTriggerNextMonth() {
+        let username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
+
+        Meteor.call('trigger-next-month', username);
+    }
+
     render() {
         return <div className="admin">
             <h1> Admin </h1>
@@ -74,8 +80,13 @@ export class Admin extends Component {
             </form>
 
             <br />
-
             <button onClick={ this.handleTriggerNextDay.bind(this) }> Trigger Next Day </button>
+
+            <br />
+            <button onClick={ this.handleTriggerNextMonth.bind(this) }> Trigger Next Month </button>
+
+            <br />
+            <br />
 
             <a onClick={ this.props.goToHome } href="#">Back</a>
         </div>;
