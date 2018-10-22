@@ -11,6 +11,8 @@ export class Login extends Component {
     render() {
         return <div className="login">
             <AccountsUIWrapper />
+
+            <a onClick={ this.props.goToAdmin } href="#">Log as Admin</a>
         </div>;
     }
 }

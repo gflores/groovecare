@@ -51,7 +51,7 @@ export class Notification extends Component {
     render() {
         if (this.props.notification.type == "sleep-score") {
             return this.renderSleepNotification();
-        } else if (this.props.notification.type == "jog-score") {
+        } else if (this.props.notification.type == "jogging-score") {
             return this.renderJogNotification();
         } else if (this.props.notification.type == "intensive-score") {
             return this.renderIntensiveNotification();

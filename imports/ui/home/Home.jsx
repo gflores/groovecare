@@ -23,7 +23,8 @@ export class Home extends Component {
     render() {
         return <div className="home">
             { this.state.subPage == "dashboard" ?
-                <Dashboard goToAccount={ this.goToAccount.bind(this) } />
+                <Dashboard notifications={ this.props.notifications } invoices={ this.props.invoices } dayResults={ this.props.dayResults }
+                    goToAccount={ this.goToAccount.bind(this) } />
             :
                 <Account goToDashboard={ this.goToDashboard.bind(this) } />
             }

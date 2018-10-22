@@ -41,7 +41,7 @@ class _Main extends Component {
                     :(this.props.user == null ?
                         <Login goToAdmin={ this.goToAdmin.bind(this) }/>
                     :
-                        <Home />
+                        <Home notifications={ this.props.notifications } invoices={ this.props.invoices } dayResults={ this.props.dayResults }/>
                     )}
                 </content>
             </div>
@@ -57,9 +57,9 @@ export const Main = composeWithTracker((props, onData) => {
     if (dayResultsSubscription.ready() && notificationSubscription.ready() && invoicesSubscription.ready()) {
         onData(null, {
             user: Meteor.user(),
-            dayResults: DayResults.find().fetch(),
-            notifications: Notifications.find().fetch(),
-            invoices: Invoices.find().fetch()
+            dayResults: DayResults.find({}, {sort: {createdAt: -1}}).fetch(),
+            notifications: Notifications.find({}, {sort: {createdAt: -1}}).fetch(),
+            invoices: Invoices.find({}, {sort: {createdAt: -1}}).fetch()
         });
     }
 })(_Main);

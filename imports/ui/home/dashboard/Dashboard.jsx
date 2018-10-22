@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-
+import { get } from 'lodash';
 import { Notification } from './notification/Notification.jsx';
 
 require("./dashboard.scss");
@@ -62,8 +62,10 @@ export class Dashboard extends Component {
             {type: "sleep-score", amount: 5}
         ]; //92
 
+        console.log("this.props.notifications: ", this.props.notifications)
+
         return <div className="notifications">
-            { notifications.map((notification, index) => (
+            { this.props.notifications.map((notification, index) => (
                 <Notification notification={ notification } key={ index }/>
             )) }
         </div>
@@ -88,7 +90,7 @@ export class Dashboard extends Component {
             <div className="main-score-display">
                 <div className="center-part">
                     <div className="groove-points">
-                        <div className="value"> 63 </div>
+                        <div className="value"> { get(this.props, "dayResults[0].groovePoints", 0) } </div>
                         <div className="label"> Groove Points </div>
                     </div>
                 </div>
