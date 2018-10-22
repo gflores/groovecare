@@ -42,7 +42,7 @@ export class Dashboard extends Component {
 
     renderFitRank() {
         return <div className="fit-rank">
-            <div className="label"> Fit Rank: 68/100</div>
+            <div className="label"> Fit Rank: { get(this.props, "dayResults[0].fitRank", 0) }/100</div>
             <div className="description">
                 <span className="number"> +$974 </span>
                 <span className="text"> saved yearly </span>

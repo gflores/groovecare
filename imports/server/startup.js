@@ -13,7 +13,8 @@ Meteor.publish("day-results", function() {
 
 Meteor.publish("notifications", function() {
   return Notifications.find({
-    userId: this.userId
+    userId: this.userId,
+    dismissed: false
   });
 });
 

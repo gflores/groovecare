@@ -6,8 +6,8 @@ export class Admin extends Component {
     handleSubmitSleepingHours(event) {
         event.preventDefault();
 
-        const value = ReactDOM.findDOMNode(this.refs.sleepInput).value.trim();
-        const username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
+        let value = ReactDOM.findDOMNode(this.refs.sleepInput).value.trim();
+        let username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
 
         Meteor.call('add-sleeping-hours', username, value);
 
@@ -19,8 +19,8 @@ export class Admin extends Component {
     handleSubmitJoggingHours(event) {
         event.preventDefault();
 
-        const value = ReactDOM.findDOMNode(this.refs.joggingInput).value.trim();
-        const username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
+        let value = ReactDOM.findDOMNode(this.refs.joggingInput).value.trim();
+        let username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
 
         Meteor.call('add-jogging-hours', username, value);
 
@@ -32,14 +32,20 @@ export class Admin extends Component {
     handleSubmitIntensiveHours(event) {
         event.preventDefault();
 
-        const value = ReactDOM.findDOMNode(this.refs.intensiveInput).value.trim();
-        const username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
+        let value = ReactDOM.findDOMNode(this.refs.intensiveInput).value.trim();
+        let username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
 
         Meteor.call('add-intensive-hours', username, value);
 
         console.log("VAL: ", username, value);
 
         ReactDOM.findDOMNode(this.refs.intensiveInput).value = '';
+    }
+
+    handleTriggerNextDay() {
+        let username = ReactDOM.findDOMNode(this.refs.usernameInput).value.trim();
+
+        Meteor.call('trigger-next-day', username);
     }
 
     render() {
@@ -66,6 +72,10 @@ export class Admin extends Component {
                 <input type="text" ref="intensiveInput" placeholder="Intensive hours" />
                 <button type="submit"> Submit </button>
             </form>
+
+            <br />
+
+            <button onClick={ this.handleTriggerNextDay.bind(this) }> Trigger Next Day </button>
 
             <a onClick={ this.props.goToHome } href="#">Back</a>
         </div>;
