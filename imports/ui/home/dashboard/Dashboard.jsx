@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 
-import Notification from './notification/Notification.jsx';
+import { Notification } from './notification/Notification.jsx';
 
 require("./dashboard.scss");
 
@@ -17,7 +17,7 @@ export class Dashboard extends Component {
                         <path fill="currentColor" d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"></path>
                     </svg>
                 </div>
-                <div className="value">7h</div>
+                <div className="value">5h</div>
             </div>
             <div className="stats">
                 <div className="label">
@@ -26,7 +26,7 @@ export class Dashboard extends Component {
                         </path>
                     </svg>
                 </div>
-                <div className="value">45m</div>
+                <div className="value">37m</div>
             </div>
             <div className="stats">
                 <div className="label">
@@ -35,14 +35,14 @@ export class Dashboard extends Component {
                         </path>
                     </svg>
                 </div>
-                <div className="value">12m</div>
+                <div className="value">5m</div>
             </div>
         </div>
     }
 
     renderFitRank() {
         return <div className="fit-rank">
-            <div className="label"> Fit Rank: 58/100</div>
+            <div className="label"> Fit Rank: 68/100</div>
             <div className="description">
                 <span className="number"> +$974 </span>
                 <span className="text"> saved yearly </span>
@@ -53,10 +53,14 @@ export class Dashboard extends Component {
 
     renderNotifications() {
         let notifications = [
-            {type: "sleep-score", amount: 7},
-            {type: "jog-score", amount: 45},
-            {type: "intensive-score", amount: 12}
-        ];
+            // {type: "jog-score", amount: 8},
+            // {type: "intensive-score", amount: 7},
+            {type: "jog-score", amount: 7},
+            // {type: "sleep-score", amount: 2},
+            {type: "intensive-score", amount: 5},
+            {type: "jog-score", amount: 30},
+            {type: "sleep-score", amount: 5}
+        ]; //92
 
         return <div className="notifications">
             { notifications.map((notification, index) => (
@@ -84,12 +88,17 @@ export class Dashboard extends Component {
             <div className="main-score-display">
                 <div className="center-part">
                     <div className="groove-points">
-                        <div className="value"> 65 </div>
+                        <div className="value"> 63 </div>
                         <div className="label"> Groove Points </div>
                     </div>
                 </div>
             </div>
 
-        </div>;
+            <div className="your-activity">
+                <div className="label"> Your Activity </div>
+                { this.renderNotifications() }
+            </div>
+
+        </div>
     }
 }

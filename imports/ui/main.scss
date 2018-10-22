@@ -1,7 +1,9 @@
 .main {
+    height: 100%;
+    
     header {
         height: 64px;
-        background-color: #cc3100;
+        background-color: rgba(204, 60, 0, 1);
 
         @media screen and (min-width: 768px) {
         }
@@ -19,7 +21,7 @@
     content {
         position: relative;
         display: block;
-        height: 100%;
+        height: calc(100% - 64px);
 
         // padding: 0px 16px 16px 16px;
 

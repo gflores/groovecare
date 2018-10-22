@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Dashboard } from './dashboard/Dashboard.jsx';
 import { Account } from './account/Account.jsx';
 
+import './home.scss';
+
 export class Home extends Component {
     componentWillMount() {
         this.goToDashboard();
