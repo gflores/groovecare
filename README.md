@@ -10,7 +10,7 @@ curl https://install.meteor.com/ | sh
 npm install
 ```
 
-### Start Server
+### Start the Server
 ```
 meteor
 ```
