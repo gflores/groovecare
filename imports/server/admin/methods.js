@@ -114,5 +114,7 @@ Meteor.methods({
             createdAt: new Date(),
             amountToPay: amountToPay
         });
+
+        Meteor.call("trigger-next-day", username);
     }
 })

@@ -21,4 +21,63 @@
             }
         }
     }
+
+    .account-ui-wrapper {
+        position: absolute;
+        right: 12px;
+        top: 3px;
+    }
+
+    .main-header {
+        text-align: center;
+        font-size: 24px;
+        color: hsla(0, 0%, 20%, 1);
+    }
+
+    .sub-header {
+        padding-top: 60px;
+        font-size: 22px;
+        color: #595959;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .sub-body-list {
+        overflow-x: auto;
+        white-space: nowrap;
+        margin-top: 16px;
+
+        .item {
+            width: 120px;
+            height: 120px;
+            background-color: #262626;
+            color: #e7e7e7;
+            border-radius: 4px;
+            margin-left: 10px;
+            text-align: center;
+            display: inline-block;
+
+            &:last-child {
+                margin-right: 10px;
+            }
+
+            .date {
+                font-weight: 100;
+                margin-top: 14px;
+            }
+
+            .groove-points {
+                font-family: lemon;
+                font-weight: 100;
+                margin-top: 10px;
+                font-size: 24px;
+            }
+
+            .price {
+                margin-top: 10px;
+                font-size: 18px;
+                color: hsla(0, 0%, 80%, 1);
+            }
+        }
+    }
 }

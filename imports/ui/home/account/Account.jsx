@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 
 import { AccountsUIWrapper } from '../../login/AccountsUIWrapper';
 
@@ -20,6 +21,34 @@ export class Account extends Component {
             </div>
 
             <AccountsUIWrapper />
+
+            <div className="main-header">
+                Your Account
+            </div>
+
+            <div className="sub-header">
+                Past Days
+            </div>
+            <div className="sub-body-list">
+                { this.props.dayResults.map((dayResult) => (
+                    <div className="item" key={ dayResult._id }>
+                        <div className="date"> { moment(dayResult.createdAt).format('MMM D, YYYY') } </div>
+                        <div className="groove-points"> { dayResult.groovePoints } </div>
+                    </div>                    
+                )) }
+            </div>
+
+            <div className="sub-header">
+                Invoices
+            </div>
+            <div className="sub-body-list">
+                { this.props.invoices.map((invoice) => (
+                    <div className="item" key={ invoice._id }>
+                        <div className="date"> { moment(invoice.createdAt).format('MMM D, YYYY') } </div>
+                        <div className="price"> ${ invoice.amountToPay } </div>
+                    </div>
+                )) }
+            </div>
 
         </div>;
     }

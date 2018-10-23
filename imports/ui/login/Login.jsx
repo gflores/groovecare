@@ -12,7 +12,7 @@ export class Login extends Component {
         return <div className="login">
             <AccountsUIWrapper />
 
-            <a onClick={ this.props.goToAdmin } href="#">Log as Admin</a>
+            <a className="log-as-admin" onClick={ this.props.goToAdmin } href="#">Log as Admin</a>
         </div>;
     }
 }

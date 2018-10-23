@@ -7,7 +7,8 @@ import './admin/methods';
 
 Meteor.publish("day-results", function() {
   return DayResults.find({
-    userId: this.userId
+    userId: this.userId,
+    paid: false
   });
 });
 

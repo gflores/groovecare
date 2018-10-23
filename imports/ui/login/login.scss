@@ -6,4 +6,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 26px;
+
+    #login-dropdown-list {
+        left: -98px !important;
+    }
+
+    .account-ui-wrapper {
+        margin-bottom: 100px;
+        font-family: lemon;
+        font-weight: 100;
+    }
+
+    .log-as-admin {
+        opacity: 0.6;
+    }
 }
